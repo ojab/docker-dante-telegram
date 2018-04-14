@@ -2,7 +2,9 @@ dante config can be built with
 ```
 ruby dante_config_generator.rb [FILENAME]
 ```
-result will be written into `FILENAME` (`danted.conf` by default)
+result will be written into `FILENAME` (`danted.conf` by default).
+Only Telegram IPs (i. e. IPs administered by MNT-TELEGRAM, pulled from [RIPE NCC database](https://www.ripe.net/))
+and domains (telegram.org, stel.com, t.me) are accessible, all other traffic is forbidden.
 
 Docker image can be pulled from [Docker hub](https://hub.docker.com/r/ojab/dante-telegram/)
 ```
