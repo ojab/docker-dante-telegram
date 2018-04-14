@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dante:
+    build: .
+    ports:
+      - "1080:1080"
+    logging:
+      options:
+        tag: dante
+    restart: unless-stopped
