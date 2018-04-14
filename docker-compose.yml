@@ -8,3 +8,5 @@ services:
       options:
         tag: dante
     restart: unless-stopped
+    tmpfs: /tmp
+    read_only: true
