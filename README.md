@@ -4,6 +4,11 @@ ruby dante_config_generator.rb [FILENAME]
 ```
 result will be written into `FILENAME` (`danted.conf` by default)
 
+Docker image can be pulled from [Docker hub](https://hub.docker.com/r/ojab/dante-telegram/)
+```
+docker pull ojab/dante-telegram
+```
+
 Simple demo:
 ```sh
 docker-compose build
