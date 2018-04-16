@@ -5,7 +5,7 @@ require 'json'
 
 # Generates dante config with Telegram subnets allowed
 class DanteConfigGenerator
-  TELEGRAM_DOMAINS = %w[telegram.org stel.com t.me].freeze
+  TELEGRAM_DOMAINS = %w[telegram.dog telegram.org stel.com t.me].freeze
   RIPE_QUERY = { 'source' => 'ripe',
                  'inverse-attribute' => 'mb,mnt-lower',
                  'query-string' => 'MNT-TELEGRAM',
