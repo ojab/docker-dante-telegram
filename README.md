@@ -21,3 +21,5 @@ docker-compose up
 curl --socks5 localhost:1080 http://web.telegram.org/
 ```
 feel free to start/use resulting docker image however you want
+
+If you need any other feature (i. e. authentication by username/password), feel free to [create an issue](https://github.com/ojab/docker-dante-telegram/issues/new) or pull request.
