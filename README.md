@@ -43,3 +43,25 @@ If you need any other feature or have issues with images, feel free to [create a
 ## User management
 
 Just add `user,password` pairs to `users.csv` and build images with `docker build . --build-arg with_users=true`. Note, even while `users.csv` is not used in final image build, it's copied to intermediate image (`users_builder` in Dockerfile) and retained in it's cache. So if you want to be on the safe side — you should remove cache after build.
+
+If you have ruby installed, you can use rake rask to add/remove/replace/list users:
+```sh
+# Adds user `ojab` with password `fakepassword`
+$ rake "users:add[ojab, fakepassword]"
+# Removes user `ojab`
+$ rake "users:remove[ojab]"
+# Adds user `ojab` with random password
+rake "users:add[ojab]"
+# Replaces ojab's password with `fakepassword2`
+$ rake "users:replace[ojab, fakepassword2]"
+# List all users
+$ rake "users:list"
+tg://socks?server=vpn.example.com&port=1080&user=telegram&pass=}FCKrhw%,|vT$Yjr
+tg://socks?server=vpn.example.com&port=1080&user=ojab&pass=fakepassword2
+# List all users with server
+$ rake "users:list[telegram.example.com]"
+tg://socks?server=telegram.example.com&port=1080&user=telegram&pass=}FCKrhw%,|vT$Yjr
+tg://socks?server=telegram.example.com&port=1080&user=ojab&pass=fakepassword2
+# Signle user can be shown using grep
+$ rake "users:list" | grep ojab
+tg://socks?server=vpn.example.com&port=1080&user=ojab&pass=fakepassword2
