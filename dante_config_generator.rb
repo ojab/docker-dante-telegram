@@ -25,7 +25,7 @@ class DanteConfigGenerator
     '5.184.0.0/13',
     '35.184.0.0/13',
     '35.208.0.0/12'
-  ]
+  ].freeze
 
   def generate
     <<~CONFIG
@@ -33,7 +33,7 @@ class DanteConfigGenerator
       internal: eth0 port = 1080
       external: eth0
       clientmethod: none
-      socksmethod: #{ENV['with_users'] ? 'username' : 'none' }
+      socksmethod: #{ENV['with_users'] ? 'username' : 'none'}
       user.privileged: root
       user.unprivileged: nobody
 
