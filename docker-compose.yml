@@ -10,3 +10,16 @@ services:
     restart: unless-stopped
     tmpfs: /tmp
     read_only: true
+  dante_users:
+    build:
+      context: .
+      args:
+        with_users: 'true'
+    ports:
+      - "1081:1080"
+    logging:
+      options:
+        tag: dante
+    restart: unless-stopped
+    tmpfs: /tmp
+    read_only: true

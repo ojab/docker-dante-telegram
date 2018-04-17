@@ -18,7 +18,7 @@ class DanteConfigGenerator
       internal: eth0 port = 1080
       external: eth0
       clientmethod: none
-      socksmethod: none
+      socksmethod: #{ENV['with_users'] ? 'username' : 'none' }
       user.privileged: root
       user.unprivileged: nobody
 

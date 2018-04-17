@@ -11,15 +11,28 @@ and domains (telegram.dog, telegram.me, telegram.org, stel.com, t.me) are access
 
 Docker image can be pulled from [Docker hub](https://hub.docker.com/r/ojab/dante-telegram/)
 ```
-docker pull ojab/dante-telegram
+docker pull ojab/dante-telegram:latest # only Telegram networks without authentication
+docker pull ojab/dante-telegram:with_users # Telegram networks, with authentication
 ```
+default username is `telegram`, password is `}FCKrhw%,|vT$Yjr`. If you want to add other users or change password, you should rebuild image youself, see [User management](#user-management) below.
 
-Simple demo:
+
+## Demo
+
 ```sh
 docker-compose build
+# localhost:1080 — ojab/dante-telegram:latest
+# localhost:1081 — ojab/dante-telegram:with_users
 docker-compose up
 curl --socks5 localhost:1080 http://web.telegram.org/
+curl --socks5 localhost:1081 http://web.telegram.org/ # fails
+curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@web.telegram.org:1081' http://web.telegram.org/
 ```
 feel free to start/use resulting docker image however you want
 
-If you need any other feature (i. e. authentication by username/password), feel free to [create an issue](https://github.com/ojab/docker-dante-telegram/issues/new) or pull request.
+If you need any other feature or have issues with images, feel free to [create a github issue](https://github.com/ojab/docker-dante-telegram/issues/new) or pull request.
+
+
+## User management
+
+Just add `user,password` pairs to `users.csv` and build images with `docker build . --build-arg with_users=true`. Note, even while `users.csv` is not used in final image build, it's copied to intermediate image (`users_builder` in Dockerfile) and retained in it's cache. So if you want to be on the safe side — you should remove cache after build.
