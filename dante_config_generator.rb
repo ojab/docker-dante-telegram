@@ -18,7 +18,8 @@ class DanteConfigGenerator
     '18.194.0.0/15',
     '35.156.0.0/14',
     # Google
-    '5.184.0.0/13'
+    '5.184.0.0/13',
+    '35.184.0.0/13'
   ]
 
   def generate
