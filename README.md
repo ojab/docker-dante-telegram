@@ -2,7 +2,7 @@ dante config can be built with
 ```
 ruby dante_config_generator.rb [FILENAME]
 ```
-result will be written into `FILENAME` (`danted.conf` by default) and can be found [in the repo](danted.conf).
+result will be written into `FILENAME` (`danted.conf` by default) and can be found in the repo: [unauthenticated config](danted.conf) (with only Telegram IPs without authentication) and [authenticated config](danted_authenticated.conf) (with username/password authentication and additional banned Amazon/Google IPs).
 
 `ruby` on the host is not needed for building docker image, config is generated inside docker.
 
