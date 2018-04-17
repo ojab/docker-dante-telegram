@@ -13,6 +13,8 @@ Docker image can be pulled from [Docker hub](https://hub.docker.com/r/ojab/dante
 ```
 docker pull ojab/dante-telegram:latest # only Telegram networks without authentication
 docker pull ojab/dante-telegram:with_users # Telegram & banned Amazon/Google networks, with authentication
+docker pull ojab/dante-telegram:all_networks # All IPv4 networks accessible, with authentication
+docker pull ojab/dante-telegram:yolo # All IPv4 networks accessible, without any authentication
 ```
 default username is `telegram`, password is `}FCKrhw%,|vT$Yjr`. If you want to add other users or change password, you should rebuild image youself, see [User management](#user-management) below.
 
@@ -23,10 +25,15 @@ default username is `telegram`, password is `}FCKrhw%,|vT$Yjr`. If you want to a
 docker-compose build
 # localhost:1080 — ojab/dante-telegram:latest
 # localhost:1081 — ojab/dante-telegram:with_users
+# localhost:1082 — ojab/dante-telegram:all_networks
+# localhost:1083 — ojab/dante-telegram:yolo
 docker-compose up
 curl --socks5 localhost:1080 http://web.telegram.org/
 curl --socks5 localhost:1081 http://web.telegram.org/ # fails
+curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@google.com:1081' # fails
 curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@web.telegram.org:1081' http://web.telegram.org/
+curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@google.com:1082'
+curl -i --socks5 google.com:1083
 ```
 feel free to start/use resulting docker image however you want
 

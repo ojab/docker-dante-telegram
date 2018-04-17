@@ -37,7 +37,8 @@ class DanteConfigGenerator
         log: error
       }
 
-      #{subnets_socks_passes.join("\n").strip}
+      #{subnet_socks_pass('0.0.0.0/0') if ENV['all_networks']}
+      #{subnets_socks_passes.join("\n").strip unless ENV['all_networks']}
 
       #{domains_socks_passes.join("\n").strip}
     CONFIG

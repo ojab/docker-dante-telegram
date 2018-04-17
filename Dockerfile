@@ -1,6 +1,7 @@
 FROM ruby:alpine as config_builder
 COPY dante_config_generator.rb .
 ARG with_users
+ARG all_networks
 RUN ruby dante_config_generator.rb
 
 FROM alpine:latest as users_builder

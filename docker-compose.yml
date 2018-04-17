@@ -23,3 +23,30 @@ services:
     restart: unless-stopped
     tmpfs: /tmp
     read_only: true
+  dante_all_networks:
+    build:
+      context: .
+      args:
+        with_users: 'true'
+        all_networks: 'true'
+    ports:
+      - "1082:1080"
+    logging:
+      options:
+        tag: dante
+    restart: unless-stopped
+    tmpfs: /tmp
+    read_only: true
+  dante_yolo:
+    build:
+      context: .
+      args:
+        all_networks: 'true'
+    ports:
+      - "1083:1080"
+    logging:
+      options:
+        tag: dante
+    restart: unless-stopped
+    tmpfs: /tmp
+    read_only: true
