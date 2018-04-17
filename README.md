@@ -30,10 +30,10 @@ docker-compose build
 docker-compose up
 curl --socks5 localhost:1080 http://web.telegram.org/
 curl --socks5 localhost:1081 http://web.telegram.org/ # fails
-curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@google.com:1081' # fails
-curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@web.telegram.org:1081' http://web.telegram.org/
-curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@google.com:1082'
-curl -i --socks5 google.com:1083
+curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@localhost:1081' http://google.com # fails
+curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@localhost:1081' http://web.telegram.org/
+curl -i --socks5 'telegram:}FCKrhw%,|vT$Yjr@localhost:1082' http://google.com
+curl -i --socks5 localhost:1083 http://google.com
 ```
 feel free to start/use resulting docker image however you want
 
