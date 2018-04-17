@@ -11,6 +11,15 @@ class DanteConfigGenerator
                  'inverse-attribute' => 'mb,mnt-lower',
                  'query-string' => 'MNT-TELEGRAM',
                  'type-filter' => 'route,route6' }.freeze
+  EXTRA_NETWORKS = [
+    # Amazon
+    '52.58.0.0/15',
+    '18.196.0.0/15',
+    '18.194.0.0/15',
+    '35.156.0.0/14',
+    # Google
+    '5.184.0.0/13'
+  ]
 
   def generate
     <<~CONFIG
@@ -41,7 +50,9 @@ class DanteConfigGenerator
   end
 
   def subnets_socks_passes
-    subnets.map { |subnet| subnet_socks_pass(subnet) }
+    all_subnets = telegram_subnets
+    all_subnets.concat(EXTRA_NETWORKS) if ENV['with_users']
+    all_subnets.map { |subnet| subnet_socks_pass(subnet) }
   end
 
   def domain_socks_pass(domain)
@@ -76,7 +87,7 @@ class DanteConfigGenerator
         .fetch('object')
   end
 
-  def subnets
+  def telegram_subnets
     routes.map do |route|
       route.fetch('primary-key').fetch('attribute').first.fetch('value')
     end

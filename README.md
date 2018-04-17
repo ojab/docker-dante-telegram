@@ -12,7 +12,7 @@ and domains (telegram.dog, telegram.me, telegram.org, stel.com, t.me) are access
 Docker image can be pulled from [Docker hub](https://hub.docker.com/r/ojab/dante-telegram/)
 ```
 docker pull ojab/dante-telegram:latest # only Telegram networks without authentication
-docker pull ojab/dante-telegram:with_users # Telegram networks, with authentication
+docker pull ojab/dante-telegram:with_users # Telegram & banned Amazon/Google networks, with authentication
 ```
 default username is `telegram`, password is `}FCKrhw%,|vT$Yjr`. If you want to add other users or change password, you should rebuild image youself, see [User management](#user-management) below.
 
