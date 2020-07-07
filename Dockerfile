@@ -4,9 +4,9 @@ ARG with_users
 ARG all_networks
 RUN ruby dante_config_generator.rb
 
-FROM alpine:latest as users_builder
-RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
-RUN apk add --no-cache csvtool@edge
+FROM python:3-alpine as users_builder
+RUN pip install --upgrade pip && \
+    pip install --upgrade setuptools csvkit
 COPY users.csv add_users.sh ./
 ARG with_users
 RUN [ -z "${with_users+x}" ] || cat users.csv | sh add_users.sh
